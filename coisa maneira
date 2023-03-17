@@ -1,0 +1,21 @@
+<a href="#" class="link-ajax" data-target="empresas.html">Empresas</a>
+<a href="#" class="link-ajax" data-target="outra_pagina.html">Outra Página</a>
+
+
+$(function() {
+    $('.link-ajax').on('click', function(event) {
+      event.preventDefault();
+      var target = $(this).data('target');
+      $.ajax({
+        url: target,
+        dataType: 'html',
+        success: function(data) {
+          $('.channel-feed__body').html(data);
+        },
+        error: function() {
+          console.log('Erro ao carregar conteúdo.');
+        }
+      });
+    });
+  });
+  

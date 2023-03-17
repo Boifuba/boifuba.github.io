@@ -13,7 +13,7 @@
         <div id="root">
           <div class="app-skeleton">
             <header class="app-header">
-              <div class="app-header__anchor"><span class="app-header__anchor__text">Tokyo_NetWire</span></div>
+              <div class="app-header__anchor"><span class="app-header__anchor__text">Night-City NetWire</span></div>
               <nav>
                 <ul class="nav">
                   <li class="nav__item">
@@ -72,31 +72,31 @@
                   <div class="nav-section__body">
                     <ul class="nav">
                       <li class="nav__item">
-                        <a class="nav__link" href="main.html">
+                        <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon">#</span><span class="channel-link__element">Main</span><span class="channel-link__element"><span class="badge">3</span></span>
+                            <span class="channel-link__icon">#</span><span class="channel-link__element">Afterlife</span><span class="channel-link__element"><span class="badge">3</span></span>
                           </span>
                         </a>
                       </li>
                       <li class="nav__item">
-                        <a class="nav__link" href="npc.html">
-                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">NPC</span></span>
+                        <a class="nav__link" href="#">
+                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">NCPD-Gigs</span></span>
                         </a>
                       </li>
                       <li class="nav__item">
-                        <a class="nav__link" href="drugs.html">
-                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">drugs</span></span>
+                        <a class="nav__link" href="#">
+                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">Pacifica</span></span>
                         </a>
                       </li>
                       <li class="nav__item">
-                        <a class="nav__link nav__link--active" href="shikaku.html">
-                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">Shikaku-no Kage</span></span>
+                        <a class="nav__link nav__link--active" href="#">
+                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">Watson</span></span>
                         </a>
                       </li>
                       <li class="nav__item">
-                        <a class="nav__link" href="general.html">
+                        <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon">#</span><span class="channel-link__element">General <span class="channel-link__element"><span class="badge">2</span></span>
+                            <span class="channel-link__icon">#</span><span class="channel-link__element">_T_SQUAD</span><span class="channel-link__element"><span class="badge">2</span></span>
                           </span>
                         </a>
                       </li>
@@ -112,30 +112,30 @@
                       <li class="nav__item">
                         <a class="nav__link" href="#">
                           <span class="conversation-link conversation-link--online conversation-link--unread">
-                            <span class="conversation-link__icon"></span><span class="conversation-link__element">Otsu</span><span class="conversation-link__element"><span class="badge">5</span></span>
+                            <span class="conversation-link__icon"></span><span class="conversation-link__element">Rogue Amendiares</span><span class="conversation-link__element"><span class="badge">5</span></span>
                           </span>
                         </a>
                       </li>
                       <li class="nav__item">
                         <a class="nav__link" href="#">
                           <span class="conversation-link conversation-link--online conversation-link--unread">
-                            <span class="conversation-link__icon"></span><span class="conversation-link__element">Akemi</span><span class="conversation-link__element"><span class="badge">1</span></span>
+                            <span class="conversation-link__icon"></span><span class="conversation-link__element">Takemura</span><span class="conversation-link__element"><span class="badge">1</span></span>
                           </span>
                         </a>
                       </li>
                       <li class="nav__item">
                         <a class="nav__link" href="#">
-                          <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Nakamura</span></span>
+                          <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Wakado O., Regina Jones</span></span>
                         </a>
                       </li>
                       <li class="nav__item">
                         <a class="nav__link" href="#">
-                          <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Outro</span></span>
+                          <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Dexter DeShawn</span></span>
                         </a>
                       </li>
                       <li class="nav__item">
                         <a class="nav__link" href="#">
-                          <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Outro</span></span>
+                          <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Megabuilding H10 Administration</span></span>
                         </a>
                       </li>
                     </ul>
@@ -148,7 +148,7 @@
                     <div class="segment-topbar__header">
                       <span class="segment-topbar__overline segment-topbar__overline">NetWire_Seed: d869db7fe62fb07c25a0403ecaea55031744b5fb</span>
                       <h4 class="text-heading4 segment-topbar__title">
-                        <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">SABURAU</span></span>
+                        <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">Watson</span></span>
                       </h4>
                     </div>
                     <div class="segment-topbar__aside">
@@ -212,4 +212,18 @@
         </div>
       </body>
 </body>
+<script>
+    // Get the current page URL
+    var currentUrl = window.location.href;
+  
+    // Find the navigation link that matches the current URL
+    var navLinks = document.querySelectorAll('.nav__link');
+    for (var i = 0; i < navLinks.length; i++) {
+      var linkUrl = navLinks[i].getAttribute('href');
+      if (linkUrl === currentUrl) {
+        navLinks[i].classList.add('nav__link--active');
+        break;
+      }
+    }
+  </script>
 </html>

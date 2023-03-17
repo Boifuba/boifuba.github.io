@@ -10,23 +10,38 @@
     <script src="jquery-3.6.4.min.js"></script>
 
     <script>
+      // $(function() {
+      //   var empresas = $('#empresas');
+      //   empresas.on('click', function(event) {
+      //     event.preventDefault();
+      //     $.ajax({
+      //       url: 'empresas.html',
+      //       dataType: 'html',
+      //       success: function(data) {
+      //         $('.channel-feed__body').html(data);
+      //       },
+      //       error: function() {
+      //         console.log('Erro ao carregar conteúdo.');
+      //       }
+      //     });
+      //   });
+      // });
       $(function() {
-        var empresas = $('#empresas');
-        empresas.on('click', function(event) {
-          event.preventDefault();
-          $.ajax({
-            url: 'empresas.html',
-            dataType: 'html',
-            success: function(data) {
-              $('.channel-feed__body').html(data);
-            },
-            error: function() {
-              console.log('Erro ao carregar conteúdo.');
-            }
-          });
-        });
+    $('.channel-link__element').on('click', function(event) {
+      event.preventDefault();
+      var target = $(this).data('target');
+      $.ajax({
+        url: target,
+        dataType: 'html',
+        success: function(data) {
+          $('.channel-feed__body').html(data);
+        },
+        error: function() {
+          console.log('Erro ao carregar conteúdo.');
+        }
       });
-      
+    });
+  });
             
             </script>
 
@@ -92,30 +107,12 @@
                       <li class="nav__item">
                         <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon" >#</span><span class="channel-link__element" id="empresas">Empresas</span><span class="channel-link__element"><span class="badge">3</span></span>
-                          </span>
-                        </a>
+                            <span class="channel-link__icon" >#</span><span class="channel-link__element" data-target="empresas.html">Empresas</span><span class="channel-link__element"><span class="badge">3</span></span>
+                            </a>
                       </li>
                       <li class="nav__item">
                         <a class="nav__link" href="#">
-                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">Leis</span></span>
-                        </a>
-                      </li>
-                      <li class="nav__item">
-                        <a class="nav__link" href="#">
-                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">Pacifica</span></span>
-                        </a>
-                      </li>
-                      <li class="nav__item">
-                        <a class="nav__link nav__link--active" href="#">
-                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">XP</span></span>
-                        </a>
-                      </li>
-                      <li class="nav__item">
-                        <a class="nav__link" href="#">
-                          <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon">#</span><span class="channel-link__element">_T_SQUAD</span><span class="channel-link__element"><span class="badge">2</span></span>
-                          </span>
+                          <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element" data-target="leis.html">Leis</span></span>
                         </a>
                       </li>
                     </ul>
@@ -216,11 +213,6 @@
                         </div>
                         <div class="message__footer"><span class="message__authoring">Boifubá</span> - 11:04pm</div>
                       </div>
-                      
-
-                   
-
-
 
                   <div class="channel-feed__footer">
                     <form class="channel-message-form" action="#">

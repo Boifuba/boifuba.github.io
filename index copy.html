@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
+
+
+</head>
+
+    <body translate="no" data-new-gr-c-s-check-loaded="14.1009.0" data-gr-ext-installed="">
+        <div id="root">
+          <div class="app-skeleton">
+            <header class="app-header">
+              <div class="app-header__anchor"><span class="app-header__anchor__text">Transhuman NetWire</span></div>
+              <nav>
+                <ul class="nav">
+                  <li class="nav__item">
+                    <a class="nav__link  nav__link nav__link--active" href="index.html"><span class="nav__link__element">Home</span></a>
+                  </li>
+                  <li class="nav__item">
+                    <a class="nav__link" href="otf.html">
+                      <span class="nav__link__element">OtF</span><span class="nav__link__element"><span class="badge">11</span></span>
+                    </a>
+                  </li>
+                  <li class="nav__item">
+                    <a class="nav__link" href="img.html"><span class="nav__link__element">Img</span></a>
+                  </li>
+                  <li class="nav__item">
+                    <a class="nav__link" href="#"><span class="nav__link__element">Root</span></a>
+                  </li>
+                  <li class="nav__item">
+                    <a class="nav__link" href="#"><span class="nav__link__element">Files</span></a>
+                  </li>
+                </ul>
+              </nav>
+              <div></div>
+            </header>
+            <div class="app-container">
+              <div class="app-a">
+                <div class="nav-section">
+             <!---colocar outra nota aqui?-->
+             
+                </div>
+                  </div>
+              <div class="app-main">
+                <div class="channel-feed">
+                  
+                  <div class="channel-feed__body">
+                    <div class="message">
+                      <div class="message__body">
+                          <div id="result"></div>
+                          <form>
+                            <label for="distance" style="text-align: right;">Distance (AU):</label>
+                            <input type="string" id="distance" name="distance" step="any" required style="display: block; margin-right: auto; margin-left: 0; background-color: #382d38; color: #fed33f; border: none; height: 30px; margin-top: 10px;">
+                            <br>
+                            <label for="acceleration" style="text-align: right;">Acceleration (G):</label>
+                            <input type="string" id="acceleration" name="acceleration" step="any" required style="display: block; margin-right: auto; margin-left: 0; background-color: #382d38; color: #fed33f; border: none; height:30px; margin-top: 10px;">
+                            <br>
+                            <button class="button button--primary button--size-xl" name="calculate" type="button" style="display: block; margin-left:75%;"> <span class="button__content">Calculate Time</span></button>
+
+                        </form>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="app-b">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+</body>
+<script>
+  async function calculateTime() {
+                            const earthDayLength = 24; // in hours
+                            const marsDayLength = 24.6; // in hours
+                            const distance = parseFloat(document.getElementById("distance").value);
+                            const acceleration = parseFloat(document.getElementById("acceleration").value);
+                            const timeInHours = 68 * Math.sqrt(distance / acceleration);
+                            const timeInEarthDays = timeInHours / earthDayLength;
+                            const timeInMarsDays = timeInHours / marsDayLength;
+                          
+                            // convert time in hours to days and hours
+                            const earthDays = Math.floor(timeInEarthDays);
+                            const earthHours = Math.round((timeInEarthDays - earthDays) * earthDayLength);
+                            const marsDays = Math.floor(timeInMarsDays);
+                            const marsHours = Math.round((timeInMarsDays - marsDays) * marsDayLength);
+                          
+                            // display the result in a user-friendly format
+                            document.getElementById("result").innerHTML = `
+                              <p>Time: ${timeInHours.toFixed(2)} hours</p>
+                              <p>Time in Earth days: ${earthDays} days and ${earthHours} hours</p>
+                              <p>Time in Mars days: ${marsDays} sols and ${marsHours} hours</p>
+                            `;
+  
+                          
+                          }
+                          const button = document.querySelector("button[name='calculate']");
+                          button.addEventListener("click", calculateTime);
+  
+  
+                          let botao = document.getElementById("meuBotao");
+  
+  // botao.addEventListener("click", function() {
+  //   // seu código aqui
+  // });
+  
+  </script>
+</html>

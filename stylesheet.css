@@ -2,7 +2,46 @@
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
+/* Mudança*/
 
+:root {
+  --font-primary: 'Rajdhani', sans-serif;
+  --font-secondary: 'VT323', monospace;
+  --font-tertiary: 'Share Tech Mono', monospace;
+}
+
+html,
+body {
+  --font-size: 1.2vw;
+  font-size: var(--font-size);
+  line-height: 1.5;
+  font-family: var(--font-primary);
+  /* outras propriedades... */
+}
+
+@media (min-width: 768px) {
+  html,
+  body {
+    --font-size: 16px;
+    font-size: var(--font-size);
+  }
+}
+
+.app-header__anchor__text {
+  font-family: var(--font-secondary);
+  font-size: 2rem;
+  letter-spacing: 0.035rem;
+  text-transform: uppercase;
+}
+
+.nav__link {
+  font-family: var(--font-tertiary);
+  font-size: 1.2rem;
+  color: #e8615a;
+}
+
+
+/* Mudança*/
 * {
   box-sizing: border-box;
   position: relative;
@@ -53,8 +92,8 @@ body {
   background-repeat: no-repeat;
   color: var(--colors-on_bg--500);
   font-family: var(--fonts-primary);
-  font-size: 100%;
-  line-height: 1.4;
+  font-size: 105%;
+  line-height: 1.5;
   margin: 0;
   min-height: 100vh;
 }
@@ -98,12 +137,12 @@ a {
 
 .app-header__anchor__text {
   font-family: var(--fonts-secondary);
-  font-size: 1.25rem;
+  font-size: 1.65rem;
   letter-spacing: 0.035rem;
   text-shadow: var(--ui-glow-text);
   text-transform: uppercase;
 }
-
+/*
 .app-container {
   display: grid;
   grid-gap: 1rem;
@@ -111,7 +150,24 @@ a {
   grid-template-columns: 280px 1fr 1fr 1fr 1fr;
   height: calc(100% - 5.25rem);
 }
+*/
 
+/*começo do ajuste*/
+.app-container {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas: "a main main main side";
+  grid-template-columns: 280px 1fr 1fr 1fr 1fr;
+  height: calc(100% - 5.25rem);
+  }
+  
+  @media screen and (max-width: 768px) {
+  .app-container {
+  grid-template-areas: "a main main" "side side side";
+  grid-template-columns: 1fr 1fr 2fr;
+  }
+  }
+/*fim do ajuste juste*/
 .app-a {
   grid-area: a;
   height: 100%;
@@ -143,7 +199,7 @@ a {
 
 .nav-section__title {
   color: #2be4ea;
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin: 0;
 }
 
@@ -269,7 +325,7 @@ color: rgba(156, 50, 48, 0.6);
 }
 
 .slate__title {
-  font-size: 1.125rem;
+  font-size: 1.325rem;
   margin: 0;
 }
 

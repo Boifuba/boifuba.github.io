@@ -44,7 +44,35 @@
       });
     });
   });
-    
+ 
+  document.addEventListener("DOMContentLoaded", function() {
+
+  const form = document.querySelector('.channel-message-form');
+  const messageList = document.querySelector('.channel-feed__body');
+  
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+  
+    const messageText = document.querySelector('#message').value;
+    const newMessage = document.createElement('div');
+    newMessage.classList.add('message__body');
+    newMessage.textContent = messageText;
+  
+    const messageFooter = document.createElement('div');
+    messageFooter.classList.add('message__footer');
+    messageFooter.innerHTML = `
+      <span class="message__authoring">Seu Nome</span> - ${new Date().toLocaleTimeString()}
+    `;
+  
+    const messageContainer = document.createElement('div');
+    messageContainer.classList.add('channel-feed__body');
+    messageContainer.appendChild(newMessage);
+    messageContainer.appendChild(messageFooter);
+  
+    messageList.appendChild(messageContainer);
+  });
+});
+
             </script>
 
 </head>
@@ -76,7 +104,7 @@
               <div class="app-a">
                 <div class="segment-topbar">
                   <div class="segment-topbar__header">
-                    <h3 class="text-heading3 segment-topbar__title">Messages</h3>
+                    <h3 class="text-heading3 segment-topbar__title">Cyberpunk</h3>
                   </div>
                   <div class="segment-topbar__aside">
                     <div class="button-toolbar">
@@ -119,6 +147,12 @@
                         <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
                             <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="leis.html">Leis</span><span class="channel-link__element"></span>
+                            </a>
+                      </li>
+                      <li class="nav__item">
+                        <a class="nav__link" href="#">
+                          <span class="channel-link conversation-link--unread">
+                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="shikaku_journal.html">Shikaku no kage</span><span class="channel-link__element"></span>
                             </a>
                       </li>
                       
@@ -217,27 +251,24 @@
                          <strong>Pontuação:</strong> 150 pontos e 30 de desvantagens. <br>
                          <strong>Livros:</strong> Cyberpunk 3e como referência, High Tech, Magic, Basic Set. <br>
                          <strong>Limites:</strong> Atributos, NH, Técnicas máximo 14. <br>
-                        
-
-
-    
-
-
-
-                        </div>
+                                                </div>
 
 
                         <div class="message__footer"><span class="message__authoring">Boifubá</span> - 11:04pm</div>
                       </div>
 
                   <div class="channel-feed__footer">
-                    <form class="channel-message-form" action="#">
+                    <form class="channel-message-form" action="salvar_comentario.php" method="POST">
                       <div class="form-group">
-                        <label class="form-label" for="message">Message</label>
-                        <div class="form-control"><textarea id="message" class="form-control" name="message"></textarea></div>
+                        <label class="form-label" for="message">cyberpunk</label>
+                        <div class="form-control">
+                          <textarea id="message" class="form-control" name="message"></textarea>
+                        </div>
                       </div>
                       <div class="form-footer">
-                        <button class="button button--primary button--size-xl" type="submit"><span class="button__content">Send</span></button>
+                        <button class="button button--primary button--size-xl" type="submit">
+                          <span class="button__content">Send</span>
+                        </button>
                       </div>
                     </form>
                   </div>
@@ -257,4 +288,6 @@
         </div>
       </body>
 </body>
+
+
 </html>

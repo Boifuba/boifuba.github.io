@@ -12,23 +12,51 @@
     <script>
     
 
-      //menu de navegação lateral 
-      $(function() {
-    $('.channel-link__element').on('click', function(event) {
-      event.preventDefault();
-      var target = $(this).data('target');
-      $.ajax({
-        url: target,
-        dataType: 'html',
-        success: function(data) {
-          $('.channel-feed__body').html(data);
-        },
-        error: function() {
-          console.log('Erro ao carregar conteúdo.');
-        }
-      });
+  //     //menu de navegação lateral 
+  //     $(function() {
+  //   $('.channel-link__element').on('click', function(event) {
+  //     event.preventDefault();
+  //     var target = $(this).data('target');
+  //     $.ajax({
+  //       url: target,
+  //       dataType: 'html',
+  //       success: function(data) {
+  //         $('.channel-feed__body').html(data);
+  //       },
+  //       error: function() {
+  //         console.log('Erro ao carregar conteúdo.');
+  //       }
+  //     });
+  //   });
+  // });
+
+  $(function() {
+  $('.channel-link__element').on('click', function(event) {
+    event.preventDefault();
+    var target = $(this).data('target');
+    var target2 = $(this).data('target2');
+    $.ajax({
+      url: target,
+      dataType: 'html',
+      success: function(data) {
+        $('.message__body').html(data);
+      },
+      error: function() {
+        console.log('Erro ao carregar conteúdo.');
+      }
+    });
+    $.ajax({
+      url: target2,
+      dataType: 'html',
+      success: function(data) {
+        $('.pad__body').html(data);
+      },
+      error: function() {
+        console.log('Erro ao carregar conteúdo.');
+      }
     });
   });
+});
 
 
             </script>
@@ -95,34 +123,38 @@
                   </div>
                   <div class="nav-section__body">
                     <ul class="nav">
-
                       <li class="nav__item">
                         <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
                             <span class="channel-link__icon" >#</span> 
-                            <span class="channel-link__element" data-target="empresas.html">Empresas</span>
+                            <span class="channel-link__element" data-target="empresas.html" data-target2="side.html">Empresas</span>
                             <span class="channel-link__element"><span class="badge">3</span></span>
+                        </a>
+                      </li>
+                      <li class="nav__item">
+                        <a class="nav__link" href="#">
+                          <span class="channel-link conversation-link--unread">
+                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="leis.html" data-target2="side.html">Leis</span><span class="channel-link__element"></span>
+                        </a>
+                      </li>
+                      <li class="nav__item">
+                        <a class="nav__link" href="#">
+                          <span class="channel-link conversation-link--unread">
+                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="shikaku_journal.html" data-target2="side2.html">Shikaku no kage</span><span class="channel-link__element"></span>
                             </a>
                       </li>
                       <li class="nav__item">
                         <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="leis.html">Leis</span><span class="channel-link__element"></span>
+                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="drogas.html" data-target2="side.html">Drogas</span><span class="channel-link__element"></span>
                             </a>
                       </li>
                       <li class="nav__item">
                         <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="shikaku_journal.html">Shikaku no kage</span><span class="channel-link__element"></span>
+                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="preco.html" data-target2="side2.html">Preços</span><span class="channel-link__element"></span>
                             </a>
                       </li>
-                      <li class="nav__item">
-                        <a class="nav__link" href="#">
-                          <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="drogas.html">Drogas</span><span class="channel-link__element"></span>
-                            </a>
-                      </li>
-                      
                    
                     </ul>
                   </div>

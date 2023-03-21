@@ -45,7 +45,41 @@
     });
   });
 
-            
+  function aperta() {
+  console.log("oi")
+  const apiKey = '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';
+  const endpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+  const prompt = 'Oi, tudo bem?';
+
+  fetch(endpoint, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${apiKey}`
+  },
+  body: JSON.stringify({
+    prompt: prompt,
+    max_tokens: 50,
+    temperature: 0.5,
+    n: 1,
+    stop: ['\n']
+  })
+})
+.then(response => response.json())
+.then(data => {
+  const respostaDiv = document.querySelector('#resposta');
+  respostaDiv.innerHTML = data.choices[0].text;
+})
+.catch(error => console.error(error));
+}
+
+
+
+
+
+
+
+
             </script>
 
 </head>
@@ -197,10 +231,11 @@
                   </div>
                   <div class="channel-feed__body">
                     <!---mennsagem-->
-                    
+
                     <div class="message__body">
                       <img src="img/npc/npc.jpg" alt="" style="position: relative; width: 100%; height: 100%; overflow: hidden;">
                       <!-- Conteúdo da div -->
+                      <div id="resposta">TEste</div>
 
                   </div>
                         <div class="message__footer"><span class="message__authoring">Boifubá</span> - 11:04pm</div>
@@ -213,7 +248,7 @@
                         <div class="form-control"><textarea id="message" class="form-control" name="message"></textarea></div>
                       </div>
                       <div class="form-footer">
-                        <button class="button button--primary button--size-xl" type="submit"><span class="button__content">Send</span></button>
+                        <button class="button button--primary button--size-xl" onclick="aperta()" id="vai" type="submit"><span class="button__content">Send</span></button>
                       </div>
                     </form>
                   </div>
@@ -233,4 +268,42 @@
         </div>
       </body>
 </body>
+
+<script>                   
+
+
+function aperta() {
+
+const apiKey = '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';
+const endpoint = 'https://api.openai.com/v1/engines/gpt3-5/completions';
+
+function getChatResponse(prompt) {
+  const body = {
+    prompt,
+    max_tokens: 50,
+    temperature: 0.5,
+    n: 1,
+    stop: '\n',
+  };
+  return fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify(body),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const resposta = data.choices[0].text.trim();
+      const divResposta = document.getElementById('resposta');
+      divResposta.innerHTML = resposta;
+    })
+    .catch((error) => {
+      console.error('Erro ao obter resposta do Chat GPT:', error);
+    });
+}
+
+}
+</script>
 </html>

@@ -1,0 +1,10 @@
+- [x] Side text Leis
+- [ ] Side text Shikaku
+- [ ] Side text Drogas
+- [ ] Preços das drogas
+- [ ] FIXER - Definir o tamanho da DIV
+- [ ] FIXER - Side Text (Padrão?)
+- [ ] NPC - Shikaku colocar imagens e tirar as células vazias
+- [ ]  NPC - Random colocar o porteiro
+- [ ] Link referença no menu tá apontando pra ref e não ambiente
+- [ ] Link referença o app a tá errado

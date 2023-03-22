@@ -10,25 +10,7 @@
     <script src="jquery-3.6.4.min.js"></script>
 
     <script>
-    
 
-  //     //menu de navegação lateral 
-  //     $(function() {
-  //   $('.channel-link__element').on('click', function(event) {
-  //     event.preventDefault();
-  //     var target = $(this).data('target');
-  //     $.ajax({
-  //       url: target,
-  //       dataType: 'html',
-  //       success: function(data) {
-  //         $('.channel-feed__body').html(data);
-  //       },
-  //       error: function() {
-  //         console.log('Erro ao carregar conteúdo.');
-  //       }
-  //     });
-  //   });
-  // });
   $(function() {
   $('.channel-link__element').on('click', function(event) {
     event.preventDefault();
@@ -85,11 +67,22 @@ $(function() {
   });
 });
 
+function gerarChave() {
+		  let chave = '';
+		  const caracteres = '0123456789abcdef';
 
-            </script>
+		  for (let i = 0; i < 40; i++) {
+		    chave += caracteres[Math.floor(Math.random() * 16)];
+		  }
+		  const chaveElemento = document.getElementById('chave');
+      chaveElemento.innerHTML = `<span class="segment-topbar__overline segment-topbar__overline">NetWire_Seed: ${chave}</span>`;
+		}
+
+</script>
 
 </head>
-<body>
+<body onload="gerarChave()">
+
     <body translate="no" data-new-gr-c-s-check-loaded="14.1009.0" data-gr-ext-installed="">
         <div id="root">
           <div class="app-skeleton">
@@ -107,10 +100,7 @@ $(function() {
                     </a>
                   </li>
                   <li class="nav__item">
-                    <a class="nav__link" href="https://campanhasdoboi.com.br/game" target="_blank"><span class="nav__link__element" >Drugs</span></a>
-                  </li>
-                  <li class="nav__item">
-                    <a class="nav__link" href="ambiente.html" target="_blank"><span class="nav__link__element" >Referença</span></a>
+                    <a class="nav__link" href="ambiente.html" ><span class="nav__link__element" >Ambientação</span></a>
                   </li>
                  </ul>
               </nav>
@@ -161,7 +151,7 @@ $(function() {
                       <li class="nav__item">
                         <a class="nav__link" href="#">
                           <span class="channel-link conversation-link--unread">
-                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="leis.html" data-target2="side.html">Leis</span><span class="channel-link__element"></span>
+                            <span class="channel-link__icon" >#</span> <span class="channel-link__element" data-target="leis.html" data-target2="leis_side.html">Leis</span><span class="channel-link__element"></span>
                         </a>
                       </li>
                       <li class="nav__item">
@@ -229,7 +219,7 @@ $(function() {
                 <div class="channel-feed">
                   <div class="segment-topbar">
                     <div class="segment-topbar__header">
-                      <span class="segment-topbar__overline segment-topbar__overline">NetWire_Seed: d869db7fe62fb07c25a0403ecaea55031744b5fb</span>
+                      <div id="chave"></div>
                       <h4 class="text-heading4 segment-topbar__title">
                         <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element">home</span></span>
                       </h4>

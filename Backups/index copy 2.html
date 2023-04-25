@@ -1,0 +1,245 @@
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="node_modules/moment/moment.js"></script>
+      <script src="node_modules/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="style.css">
+      <script>
+         moment.locale("pt-br");
+         vis.moment = moment;
+         vis.moment.locale("pt-br");
+      </script>
+      <title>Document</title>
+ <!-- load handlebars for templating, and create a template -->
+ 
+ 
+
+
+
+
+  </script>
+   </head>
+
+  
+  <body>
+   <main>
+      <h1>Timeline</h1>
+      <div id="visualization"></div>
+  
+      <div class="container">
+       
+            <div class="box1">
+              
+                <form id="event-form">
+                    <label for="group">Grupo:</label>
+                    <input type="text" id="group" name="group" required />
+
+                    <label for="content">Título:</label>
+                    <input type="text" id="content" name="content" required />
+                    <br>
+                    <label for="start">Início:</label>
+                    <input type="date" id="start" name="start" required />
+                    <label for="end">Fim:</label>
+                    <input type="date" id="end" name="end" />
+                    <br>
+                    <label for="text">Texto:</label>
+                    <input type="text" id="text" name="text" required />
+                    <small>aqui deve entrar um tinymce</small>
+                    <br>
+                    <div style=" display: flex; justify-content: center; align-items: center;">
+                    <button class="button-57" type="submit" style="display:inline-block; width:150px; height:50px; margin-right:10px;">Adicionar</button>
+                    <button class="button-57" type="button" onclick="alterarEventos()" style="display:inline-block; width:150px; height:50px;">Download</button>
+                    <button class="button-57" type="button" id="updateButton" style="display:inline-block; width:150px; height:50px; margin-right:10px;">Update</button>
+
+               
+                       </div>
+                    <input type="file" id="inputFile" />
+                  </form>
+                  
+                    
+            </div>
+
+            <div class="box2" id="box2">
+                    <p>Texto a ser inserido posteriormente </p>
+            </div>
+
+        </div>
+      </div>
+</main>
+  
+    
+
+    <script type="text/javascript">
+
+      // create a handlebars template
+
+  var container = document.getElementById('visualization');
+
+      // Importar moment.js e configurar localização para pt-br
+      moment.locale("pt-br");
+      vis.moment = moment;
+      vis.moment.locale("pt-br");
+
+      const eventForm = document.getElementById("event-form");
+      const inputFile = document.getElementById("inputFile");
+
+      // Adicionar evento de submit ao formulário de adicionar evento
+      eventForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const start = new Date(document.getElementById("start").value);
+  const end = document.getElementById("end").value ? new Date(document.getElementById("end").value) : null;
+  const group = document.getElementById("group").value;
+  const content = document.getElementById("content").value;
+  const text = document.getElementById("text").value;
+
+
+  items.add({
+    start,
+    end,
+    group,
+    content,
+    text,
+  });
+
+  eventForm.reset();
+});
+
+      // Adicionar evento de change ao input de arquivo
+      inputFile.addEventListener("change", function () {
+        const file = inputFile.files[0];
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const eventos = JSON.parse(event.target.result);
+          items.clear();
+          items.add(eventos);
+          timeline.fit();
+        };
+        reader.readAsText(file);
+      });
+
+      // Adicionar evento de click ao botão de download
+      function alterarEventos() {
+        const eventos = items.get({
+          fields: ["img", "id", "start", "end", "group", "text", "content"],
+        });
+        const eventosJson = JSON.stringify(eventos, null, 2);
+        const blob = new Blob([eventosJson], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "eventos.json";
+        link.click();
+      }
+
+      // Inicialização da timeline
+      
+      const groups = new vis.DataSet([
+        {
+          id: "a",
+          content: 'A',
+          subgroupOrder: function (a, b) {
+            return a.subgroupOrder - b.subgroupOrder;
+          },
+          subgroupStack: { sg_1: false, sg_2: false, sg_3: false },
+        },
+        {
+          id: "b",
+          content: "B",
+        },
+      ]);
+
+      const items = new vis.DataSet([]);
+
+      const options = {
+         format: {
+          minorLabels: {
+            minute: "h:mma",
+            hour: "ha",
+          },
+        },
+        editable: {
+          add: true,
+          updateTime: true,
+          updateGroup: true,
+          remove: true,
+        },
+        multiselect: true,
+        margin: {
+          item: 20,
+          axis: 40,
+        },
+
+      };
+      var timeline = new vis.Timeline(container, items, groups, options)
+
+
+
+
+
+    timeline.on('select', function (properties) {
+  var itemId = properties.items[0];
+  var selectedItem = items.get(itemId);
+  var box2 = document.getElementById('box2');
+  var startDate = moment(selectedItem.start).format('DD/MM/YYYY'); // formata a data para o formato desejado
+  var endDate = moment(selectedItem.start).format('DD/MM/YYYY'); // formata a data para o formato desejado
+
+  box2.innerHTML = 'Content: ' + selectedItem.content + '<br>' +
+                   'Start: ' + startDate + '<br>' +
+                   'End: ' + endDate + '<br>' +
+                   'Text: ' + selectedItem.text; // adicionando a chave "text"
+});
+
+
+const contentInput = document.getElementById("content");
+const startInput = document.getElementById("start");
+const endInput = document.getElementById("end");
+const textInput = document.getElementById("text");
+const groupInput = document.getElementById("group");
+
+
+timeline.on('select', function (properties) {
+  const itemId = properties.items[0];
+  const selectedItem = items.get(itemId);
+
+  const start = selectedItem.start;
+  const end = selectedItem.end;
+  const text = selectedItem.text;
+  const group = selectedItem.group;
+  const content = selectedItem.content;
+
+  // Atribuindo cada informação ao seu respectivo input
+  contentInput.value = content;
+  startInput.value = start;
+  endInput.value = end;
+  textInput.value = text;
+  groupInput.value = group;
+
+  // Adicionando listener no botão de atualizar
+  const updateButton = document.getElementById("updateButton");
+  updateButton.addEventListener("click", function() {
+    // Recuperando valores dos inputs
+    const newContent = contentInput.value;
+    const newStart = startInput.value;
+    const newEnd = endInput.value;
+    const newText = textInput.value;
+    const newGroup = groupInput.value;
+
+    // Atualizando item na timeline
+    items.update({
+      id: selectedItem.id, 
+      content: newContent,
+      start: newStart,
+      end: newEnd,
+      text: newText,
+      group: newGroup
+    });
+  });
+});
+
+
+    </script>
+  </body>
+</html>

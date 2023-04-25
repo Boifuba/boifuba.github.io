@@ -1,0 +1,101 @@
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="node_modules/moment/moment.js"></script>
+      <script src="/node_modules/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="style.css">
+      <script>
+         moment.locale("pt-br");
+         vis.moment = moment;
+         vis.moment.locale("pt-br");
+      </script>
+      <title>Document</title>
+   </head>
+
+  
+<body>
+
+<h1>Tooltips</h1>
+
+<p>
+  Setting the tooltip in various ways.
+</p>
+
+<div id="tooltips"></div>
+
+<p>
+  The example below has the tooltip follow the mouse.
+</p>
+
+<div id="tooltips-follow"></div>
+
+<p>
+  The example below has the tooltip overflow set to 'cap'. Compare this to the one above,
+  to see how they differ. For the best results, move the cursor to the top right,
+  where the tool-tip is going to overflow out of the timeline.
+</p>
+
+<div id="tooltips-cap"></div>
+
+<p>
+  Disable item tooltips.
+</p>
+
+<div id="tooltips-hide"></div>
+
+<script type="text/javascript">
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet([
+    {id: 1, content: 'Item 1', start: '2016-01-01', end: '2016-01-02',
+      title: 'Normal text'},
+    {id: 2, content: 'Item 2', start: '2016-01-02', title: '<b>Bold</b>'},
+    {id: 3, content: 'Item 3', start: '2016-01-03', type: 'point',
+      title: '<span style="color: red">Red</span> text'},
+    {id: 4, content: '<h1>HTML</h1> Item', start: '2016-01-03', end: '2016-01-04',
+      title: '<table border="1"><tr><td>Cell 1</td><td>Cell 2</td></tr></table>'}
+  ]);
+
+  // Options
+  var options = {};
+
+  // Timeline object
+  var timelineTooltips = new vis.Timeline(document.getElementById('tooltips'),
+      items, options
+  );
+
+  // Follow options
+  var follow_options = {
+    tooltip: {
+      followMouse: true
+    }
+  };
+
+  var timelineFollow = new vis.Timeline(document.getElementById('tooltips-follow'),
+      items, follow_options);
+
+  // Cap options
+  var cap_options = {
+    tooltip: {
+      followMouse: true,
+      overflowMethod: 'cap'
+    }
+  }
+
+  var timelineCap = new vis.Timeline(document.getElementById('tooltips-cap'),
+      items, cap_options);
+
+  // Hide options
+  var hide_options = {
+    showTooltips: false
+  }
+
+  var timelineHide = new vis.Timeline(document.getElementById('tooltips-hide'),
+      items, hide_options);
+
+</script>
+
+</body>
+</html>

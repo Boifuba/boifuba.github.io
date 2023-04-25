@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "moment": "^2.29.4",
+    "standalone": "^0.0.1",
+    "vis": "^4.21.0-EOL"
+  }
+}

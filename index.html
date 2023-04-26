@@ -1,0 +1,179 @@
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js"></script>
+      <script src="/lib/vis-timeline-graph2d.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="/style.css">
+      
+      <title>Parachronics</title>
+   </head>
+  <body>
+   <main>
+
+ <header class="d-flex flex-wrap justify-content-center py-1 mb-2 border-bottom backsheader">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto backsheaderlink-body-emphasis text-decoration-none">
+        <img src="img/scp_trans.png" style='width:50px; height:50px;'>
+      </a>
+ </header>
+
+    <div id="visualization"></div>
+
+
+</div>
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2023 Infinity Unlimited</p>
+    
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        </a>
+    
+        <ul class="nav col-md-1 justify-content-end">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+          <li class="nav-item"><a href="https://campanhasdoboi.com.br/join" class="nav-link px-2 text-body-secondary">Foundry</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+        </ul>
+      </footer>
+
+
+</main>
+
+    <script type="text/javascript">
+
+//             // Importar moment.js
+//             moment.locale('pt-br');
+//   vis.moment = moment;
+//   vis.moment.locale('pt-br');
+  
+// moment.updateLocale('pt-br', {
+//     months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+//     monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
+//     weekdays : 'Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado'.split('_'),
+//     weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
+//     weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_')
+//});
+          var container = document.getElementById('visualization');
+
+        // Inicialização da timeline
+
+      const groups = new vis.DataSet([
+        {
+          id: "a",
+          content: 'A',
+        },
+        {
+          id: "b",
+          content: "B",
+        },
+        {
+          id: "c",
+          content: "C",
+        },
+        {
+          id: "d",
+          content: "D",
+        },
+        {
+          id: "e",
+          content: "E",
+        },
+
+      ]);
+      let imgPath = "/img/scp_trans.png";
+
+// Seleciona a imagem pelo tag "img"
+var imgI = document.querySelector("img");
+imgI.src = imgPath;
+
+// Cria o texto dos itens com a imagem incorporada
+var item1 = `<table><tr><td><img src="${imgPath}"></td><td>Jogadores entram na Infinity</td></tr></table>`;
+var item3 = `<table><tr><td><img src="${imgPath}"></td><td>Jogadores entram na Infinity</td></tr></table>`;
+var item4 = `<table><tr><td><img src="${imgPath}"></td><td>Alguém retorna no tempo</td></tr></table>`;
+var item5 = `<table><tr><td><img src="${imgPath}"></td><td>Pesquisa da mochila</td></tr></table>`;
+var item6 = `<table><tr><td><img src="${imgPath}"></td><td>Mallony é preso!</td></tr></table>`;
+
+// Cria o texto dos itens de história com a imagem incorporada
+var item100 = `<img src="${imgPath}">Benjamim Parker está desaparecido.`;
+var item101 = `<img src="${imgPath}">SCP-0123`;
+var item102 = `<img src="${imgPath}">Pais de Kira estão desaparecidos.`;
+
+      const items = new vis.DataSet([
+        { id: 1, content: item1, group: "c", start: "2036-01-20", className: 'player' },
+        { id: 3, content: item3, group: "c", start: "2036-10-15", className: 'player'},
+        { id: 4, content: item4, group: "d", start: "2036-10-10"},
+        { id: 5, content: item5, group: "c", start: "2036-10-17", end:"2036-12-20", className: 'player'},
+        { id: 6, content: item6, group: "c", start: "2036-10-17", className: 'player'},
+        //História
+        { id: 100, content: item100, group: "a", start: "2035-04-01", className: 'evento'},
+        { id: 101, content: item101, group: "a", start: "2034-02-12", end:"2036-12-18", className: 'evento', title: '<p>Você não está autorizado <br>a saber desse evento.</b>'},
+        { id: 102, content: item102, group: "a", start: "2035-04-03", className: 'evento'},
+
+      ]) 
+      
+// Redimensiona a altura da timeline sempre que a janela do navegador for redimensionada
+
+      var windowHeight = window.innerHeight;
+      
+window.addEventListener('resize', function() {
+  var newWindowHeight = window.innerHeight;
+  timeline.setOptions({
+    height: newWindowHeight + 'px'
+  });
+});
+
+  
+  const options = {
+         format: {
+          minorLabels: {
+            minute: "h:mma",
+            hour: "ha",
+          }
+        },
+    //     tooltip: {
+    // followMouse: true,
+    // overflowMethod: 'cap'
+  
+  editable: {
+          add: true,
+          updateTime: true,
+          updateGroup: true,
+          remove: true,
+        }
+       };
+
+     
+
+ 
+
+
+      // Create a Timeline
+      var timeline = new vis.Timeline(container, items, groups, options);
+
+      //DATA ATUAL DO JOGO
+      var newTime = new Date(2036, 10, 17);
+timeline.setCurrentTime(newTime);
+
+     //MARCA AZUL
+// Defina uma lista de datas e textos para os marcadores personalizados
+var markers = [
+  { date: new Date(2034, 1, 1), text: 'Início' },
+
+];
+
+// Adicione cada marcador personalizado à linha do tempo usando um loop
+for (var i = 0; i < markers.length; i++) {
+  var id = new Date().getTime() + i; // Crie um ID exclusivo para cada marcador
+  var marker = markers[i]; // Obtenha a data e o texto para o marcador atual
+  timeline.addCustomTime(marker.date, id); // Adicione o marcador personalizado
+  timeline.setCustomTimeMarker(marker.text, id); // Defina o texto do marcador personalizado
+}
+
+    
+    </script>
+  </body>
+</html>

@@ -3,12 +3,11 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js"></script>
-      <script src="/lib/vis-timeline-graph2d.js"></script>
+      <script src="/node_modules/moment/moment.js"></script>
+      <script src="/node_modules/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="/style.css">
-     
+      
       <title>Document</title>
    </head>
   <body>
@@ -25,12 +24,12 @@
                 <form id="event-form">
                   <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; grid-gap: 10px;">
                     <div>
-                      <label for="group">Grupo:</label><br>
-                      <input type="text" id="group" name="group" style="width: 98%"required />
+                      <label for="group">Grupo:</label>
+                      <input type="text" id="group" name="group" required />
                     </div>
                     <div>
                       <label for="content">Título:</label><br>
-                      <input type="text" id="content" name="content" style="width: 98%" required />
+                      <input type="text" id="content" name="content" required />
                     </div>
                     <div>
                     <label for="start"> Início:</label><br>
@@ -249,16 +248,39 @@ timeline.on('select', function (properties) {
     const newEnd = moment(endInput.value).format('YYYY-MM-DD');
     const newText = textInput.value;
     const newGroup = groupInput.value;
-console.log(start)
+
     // Atualizando item na timeline
-    items.update({
-  id: selectedItem.id,
-  content: newContent,
-  start : moment(newStart).utc().format('YYYY-MM-DDTHH:mm:ss.SSS[Z]'),
-  end : moment(newEnd).utc().format('YYYY-MM-DDTHH:mm:ss.SSS[Z]'),
-  text: newText,
-  group: newGroup
-});
+    function updateEvent(eventId) {
+    // obtém o item correspondente ao ID fornecido
+    var selectedItem = timeline.get(eventId);
+
+    if (selectedItem) {
+        // atualiza o item existente com as informações dos inputs
+        selectedItem.group = document.getElementById('group').value;
+        selectedItem.content = document.getElementById('title').value;
+        selectedItem.start = new Date(document.getElementById('start').value);
+        selectedItem.end = new Date(document.getElementById('end').value);
+        selectedItem.text = document.getElementById('text').value;
+
+        // atualiza o item na timeline
+        timeline.update(selectedItem);
+    } else {
+        // cria um novo item com as informações dos inputs
+        var newItem = {
+            id: new Date().valueOf(), // utiliza a data atual como ID
+            group: document.getElementById('group').value,
+            content: document.getElementById('title').value,
+            start: new Date(document.getElementById('start').value),
+            end: new Date(document.getElementById('end').value),
+            text: document.getElementById('text').value
+        };
+
+        // adiciona o novo item à lista de eventos e à timeline
+        events.add(newItem);
+        timeline.add(newItem);
+    }
+}
+
 
   });
 

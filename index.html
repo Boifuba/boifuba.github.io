@@ -3,11 +3,10 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js"></script>
-      <script src="/vis-timeline-graph2d.js"></script>
+      <script src="vis-timeline-graph2d.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="/style.css">
+      .
       
       <title>Parachronics</title>
    </head>
@@ -30,9 +29,9 @@
         <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         </a>
-    
+
         <ul class="nav col-md-1 justify-content-end">
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" onclick="location.reload()">Reset</a></li>
           <li class="nav-item"><a href="https://campanhasdoboi.com.br/join" class="nav-link px-2 text-body-secondary">Foundry</a></li>
           <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
           <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
@@ -92,7 +91,7 @@ imgI.src = imgPath;
 
 // Cria o texto dos itens com a imagem incorporada
 var item1 = `<table><tr><td><img src="${imgPath}"></td><td>Jogadores entram na Infinity</td></tr></table>`;
-var item3 = `<table><tr><td><img src="${imgPath}"></td><td>Jogadores entram na Infinity</td></tr></table>`;
+var item3 = `<table><tr><td><img src="${imgPath}"></td><td>Teste de Resistência</td></tr></table>`;
 var item4 = `<table><tr><td><img src="${imgPath}"></td><td>Alguém retorna no tempo</td></tr></table>`;
 var item5 = `<table><tr><td><img src="${imgPath}"></td><td>Pesquisa da mochila</td></tr></table>`;
 var item6 = `<table><tr><td><img src="${imgPath}"></td><td>Mallony é preso!</td></tr></table>`;
@@ -107,7 +106,7 @@ var item102 = `<img src="${imgPath}">Pais de Kira estão desaparecidos.`;
         { id: 3, content: item3, group: "c", start: "2036-10-15", className: 'player'},
         { id: 4, content: item4, group: "d", start: "2036-10-10"},
         { id: 5, content: item5, group: "c", start: "2036-10-17", end:"2036-12-20", className: 'player'},
-        { id: 6, content: item6, group: "c", start: "2036-10-17", className: 'player'},
+        { id: 6, content: item6, group: "c", start: "2036-10-18", className: 'player'},
         //História
         { id: 100, content: item100, group: "a", start: "2035-04-01", className: 'evento'},
         { id: 101, content: item101, group: "a", start: "2034-02-12", end:"2036-12-18", className: 'evento', title: '<p>Você não está autorizado <br>a saber desse evento.</b>'},
@@ -126,8 +125,10 @@ window.addEventListener('resize', function() {
   });
 });
 
+let alturaViewport = window.innerHeight * 0.762;
   
   const options = {
+         height: alturaViewport,
          format: {
           minorLabels: {
             minute: "h:mma",
@@ -177,3 +178,5 @@ for (var i = 0; i < markers.length; i++) {
     </script>
   </body>
 </html>
+
+
